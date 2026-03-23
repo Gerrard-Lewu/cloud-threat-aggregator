@@ -15,7 +15,7 @@ public class ThreatController {
 
     @GetMapping("/check")
     public Object checkIp(@RequestParam String ip) {
-        Optional<ThreatIndicator> indicator = repository.findByIpAddress(ip);
+        Optional<ThreatIndicator> indicator = repository.findFirstByIpAddressOrderByIdDesc(ip);
 
         if (indicator.isPresent()) {
             return indicator.get(); // Returns the malicious IP details as JSON
