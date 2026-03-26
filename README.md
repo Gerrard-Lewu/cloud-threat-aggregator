@@ -6,7 +6,7 @@ This API is designed to reduce external API latency in SIEM (Security Informatio
 
 ## ️ Cloud Architecture
 
-![](C:\Users\DellUser\Documents\Projects\fraud-architecture-diagram.png)([PLACEHOLDER: Insert link to your draw.io image here])
+![image alt](https://github.com/Gerrard-Lewu/cloud-threat-aggregator/blob/main/img.png?raw=true)
 
 ### Infrastructure Breakdown
 This project demonstrates cloud networking, container orchestration, and security best practices:
@@ -27,7 +27,7 @@ This project demonstrates cloud networking, container orchestration, and securit
 
 ##  API Endpoints
 
-**Base URL (Click to test):** [http://13.246.188.193:8080](http://13.246.188.193:8080)
+**Base URL (Click to test):** [http://13.246.188.193:8080](http://13.246.188.193:8080)  
 **Live Demo (Click to test):** [http://13.246.188.193:8080/api/v1/threats/check?ip=192.168.1.99](http://13.246.188.193:8080/api/v1/threats/check?ip=192.168.1.99)
 
 ### 1. Check IP Threat Status
