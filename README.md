@@ -1,5 +1,7 @@
 # Cloud-Native Threat Intelligence Aggregator API
 
+![CI/CD Pipeline](https://github.com/Gerrard-Lewu/cloud-threat-aggregator/actions/workflows/deploy.yml/badge.svg)
+
 A containerized Spring Boot microservice deployed on AWS Fargate that automatically aggregates, standardizes, and stores malicious IP data from external threat intelligence feeds (AbuseIPDB).
 
 This API is designed to reduce external API latency in SIEM (Security Information and Event Management) environments by maintaining a localized, high-speed, and secure cloud database of known threat actors.
@@ -11,6 +13,7 @@ This API is designed to reduce external API latency in SIEM (Security Informatio
 ### Infrastructure Breakdown
 This project demonstrates cloud networking, container orchestration, and security best practices:
 
+* **CI/CD Automation (GitHub Actions):** A fully automated deployment pipeline. Pushing code to the `main` branch automatically triggers a Linux runner to compile the Spring Boot app, build a new Docker image, push it to Amazon ECR, and trigger a rolling, zero-downtime update on the ECS Fargate cluster.
 * **Compute (Amazon ECS with Fargate):** The Spring Boot application is containerized via Docker and runs on serverless Fargate compute, eliminating the need to manage underlying EC2 instances while ensuring high availability.
 * **Registry (Amazon ECR):** Secure, private storage for the compiled application images.
 * **Database (Amazon RDS - PostgreSQL):** A fully managed relational database deployed within a **private subnet**.
@@ -22,6 +25,7 @@ This project demonstrates cloud networking, container orchestration, and securit
 * **Backend:** Java 21, Spring Boot 3.x, Spring Data JPA, Hibernate
 * **Database:** PostgreSQL
 * **Containerization:** Docker
+* **CI/CD:** GitHub Actions
 * **Cloud Provider:** AWS (ECS, Fargate, ECR, RDS, IAM, CloudWatch)
 * **External Integration:** AbuseIPDB API
 
