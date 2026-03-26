@@ -27,8 +27,8 @@ This project demonstrates cloud networking, container orchestration, and securit
 
 ##  API Endpoints
 
-**Base URL (Click to test):** [http://13.246.188.193:8080](http://13.246.188.193:8080)  
-**Live Demo (Click to test):** [http://13.246.188.193:8080/api/v1/threats/check?ip=192.168.1.99](http://13.246.188.193:8080/api/v1/threats/check?ip=192.168.1.99)
+**Base URL (Click to test):** [http://13.247.185.106:8080](http://13.247.185.106:8080)  
+**Live Demo (Click to test):** [http://13.247.185.106:8080/api/v1/threats/check?ip=192.168.1.99](http://13.247.185.106:8080/api/v1/threats/check?ip=192.168.1.99)
 
 ### 1. Check IP Threat Status
 Evaluates an IP address against the aggregated localized database.
