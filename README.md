@@ -8,12 +8,13 @@ This API is designed to reduce external API latency in SIEM (Security Informatio
 
 ## ️ Cloud Architecture
 
-![image alt](https://github.com/Gerrard-Lewu/cloud-threat-aggregator/blob/main/img.png?raw=true)
+![image alt](assets/Aggregator-Architecture.png)
 
 ### Infrastructure Breakdown
 This project demonstrates cloud networking, container orchestration, and security best practices:
 
 * **CI/CD Automation (GitHub Actions):** A fully automated deployment pipeline. Pushing code to the `main` branch automatically triggers a Linux runner to compile the Spring Boot app, build a new Docker image, push it to Amazon ECR, and trigger a rolling, zero-downtime update on the ECS Fargate cluster.
+* **Traffic Routing (Application Load Balancer):** An AWS ALB provides a static DNS endpoint, distributing incoming API requests to healthy Fargate containers and handling automated health checks.
 * **Compute (Amazon ECS with Fargate):** The Spring Boot application is containerized via Docker and runs on serverless Fargate compute, eliminating the need to manage underlying EC2 instances while ensuring high availability.
 * **Registry (Amazon ECR):** Secure, private storage for the compiled application images.
 * **Database (Amazon RDS - PostgreSQL):** A fully managed relational database deployed within a **private subnet**.
@@ -26,13 +27,13 @@ This project demonstrates cloud networking, container orchestration, and securit
 * **Database:** PostgreSQL
 * **Containerization:** Docker
 * **CI/CD:** GitHub Actions
-* **Cloud Provider:** AWS (ECS, Fargate, ECR, RDS, IAM, CloudWatch)
+* **Cloud Provider:** AWS (ECS, Fargate, ALB, ECR, RDS, IAM, CloudWatch)
 * **External Integration:** AbuseIPDB API
 
 ##  API Endpoints
 
-**Base URL (Click to test):** [http://13.247.185.106:8080](http://13.247.185.106:8080)  
-**Live Demo (Click to test):** [http://13.247.185.106:8080/api/v1/threats/check?ip=192.168.1.99](http://13.247.185.106:8080/api/v1/threats/check?ip=192.168.1.99)
+**Base URL:** [http://threat-api-targets-581791851.af-south-1.elb.amazonaws.com:8080](http://threat-api-targets-581791851.af-south-1.elb.amazonaws.com:8080)  
+**Live Demo (Click to test):** [http://threat-api-targets-581791851.af-south-1.elb.amazonaws.com:8080/api/v1/threats/check?ip=192.168.1.99](http://threat-api-targets-581791851.af-south-1.elb.amazonaws.com:8080/api/v1/threats/check?ip=192.168.1.99)
 
 ### 1. Check IP Threat Status
 Evaluates an IP address against the aggregated localized database.
@@ -73,6 +74,5 @@ A temporary utility endpoint to verify secure database connectivity from the pub
 
 ##  Future Enhancements
 To scale this architecture for high-volume production traffic, the following AWS services would be introduced:
-1.  **Application Load Balancer (ALB):** To provide a static DNS endpoint and distribute traffic across multiple Fargate tasks.
-2.  **Amazon Route 53 & ACM:** To attach a custom domain name and secure the API with HTTPS/TLS encryption.
-3.  **Amazon ElastiCache (Redis):** To cache frequent IP checks, reducing the read-load on the RDS instance.
+1. **Amazon Route 53 & ACM:** To attach a custom domain name and secure the API with HTTPS/TLS encryption.
+2. **Amazon ElastiCache (Redis):** To cache frequent IP checks, reducing the read-load on the RDS instance.
