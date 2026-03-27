@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main # Triggers the pipeline every time I push to the main branch
+    paths-ignore:
+      - 'README.md'
+      - 'img.png'
+      - '.gitignore'
 
 env:
   AWS_REGION: af-south-1
